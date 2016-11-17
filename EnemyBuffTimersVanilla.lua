@@ -1709,6 +1709,7 @@ function EnemyBuffTimers:UpdateFrames(destName, spellName)
 			this.guids[destName][spellName]:SetHeight(36)
 			this.guids[destName][spellName]:SetWidth(36)
 			local scale = TargetFrameDebuff1:GetHeight()/36
+			if LunaLUFUnittargetDebuffFrame1 then scale = LunaLUFUnittargetDebuffFrame1:GetHeight()/36 end
 			this.guids[destName][spellName]:SetScale(scale)
 			this.guids[destName][spellName].parent:SetAllPoints(region)
 			this.guids[destName][spellName].parent:Show()
@@ -2196,10 +2197,12 @@ function EnemyBuffTimers:UNIT_AURA(unitID)
 				local name = EnemyToolTipTextLeft1:GetText()
 				if this.guids[destName][name] then
 					local region = getglobal(firstToUpper(unitID).."FrameBuff"..i)
+					if getglobal("LunaLUFUnittargetBuffFrame"..i) then region = getglobal("LunaLUFUnittargetBuffFrame"..i) end
 					if region then
 						this.guids[destName][name]:SetHeight(36)
 						this.guids[destName][name]:SetWidth(36)
 						local scale = TargetFrameBuff1:GetHeight()/36
+						if LunaLUFUnittargetBuffFrame1 then scale = LunaLUFUnittargetBuffFrame1:GetHeight()/36 end
 						this.guids[destName][name]:SetScale(scale)
 						this.guids[destName][name].parent:SetAllPoints(region)
 						this.guids[destName][name].parent:Show()
@@ -2218,10 +2221,12 @@ function EnemyBuffTimers:UNIT_AURA(unitID)
 				local name = EnemyToolTipTextLeft1:GetText()
 				if this.guids[destName][name] then
 					local region = getglobal(firstToUpper(unitID).."FrameDebuff"..i)
+					if getglobal("LunaLUFUnittargetDebuffFrame"..i) then region = getglobal("LunaLUFUnittargetDebuffFrame"..i) end
 					if region then
 						this.guids[destName][name]:SetHeight(36)
 						this.guids[destName][name]:SetWidth(36)
 						local scale = TargetFrameDebuff1:GetHeight()/36
+						if LunaLUFUnittargetDebuffFrame1 then scale = LunaLUFUnittargetDebuffFrame1:GetHeight()/36 end
 						this.guids[destName][name]:SetScale(scale)
 						this.guids[destName][name].parent:SetAllPoints(region)
 						this.guids[destName][name].parent:Show()

@@ -1,6 +1,6 @@
 ## Interface: 11200
-## Title: EnemyBuffTimersVanilla
+## Title: EnemyBuffTimersVanilla |cff7fff7f + LunaUnitFrames 2.x Support|r
 ## Author: Schaka
-## Notes: Shows the duration of some enemy buffs on the buffs
+## Notes: Shows the duration of some enemy buffs on the buffs.
 EnemyBuffTimersVanilla.xml
 cooldown.lua
