@@ -1675,7 +1675,7 @@ EnemyBuffTimers:SetScript("OnUpdate", EnemyBuffTimers.OnUpdate)
 EnemyBuffTimers:RegisterEvent("PLAYER_ENTERING_WORLD")
 
 function EnemyBuffTimers:CreateFrames(destName, spellName)
-	if this.guids then
+	if this and this.guids then
 		if type(this.guids[destName]) ~= "table" then
 			this.guids[destName] = { }
 		end
