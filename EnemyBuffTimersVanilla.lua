@@ -1675,31 +1675,32 @@ EnemyBuffTimers:SetScript("OnUpdate", EnemyBuffTimers.OnUpdate)
 EnemyBuffTimers:RegisterEvent("PLAYER_ENTERING_WORLD")
 
 function EnemyBuffTimers:CreateFrames(destName, spellName)
-	if type(this.guids[destName]) ~= "table" then
-		this.guids[destName] = { }
-	end
-	-- don't create any more frames than necessary to avoid memory overload
-	if this.guids[destName] and this.guids[destName][spellName] then
-		this:UpdateFrames(destName, spellName)
-	elseif this.abilities[spellName] then
-		this.guids[destName][spellName] = CreateFrame("Model", spellName .. "_" .. destName.."Cooldown", nil, "CooldownFrameTemplate")
-		-- to make this work with OmniCC || OmniCC requires parent and Icon
-		this.guids[destName][spellName].parent = CreateFrame("Frame", spellName .. "_" .. destName)
-		this.guids[destName][spellName].parent:Hide()
-		this.guids[destName][spellName].parent.icon = CreateFrame("Frame", spellName .. "_" .. destName.."EBF")
-		this.guids[destName][spellName].parent.icon:SetAllPoints(this.guids[destName][spellName].parent)
-		this.guids[destName][spellName]:SetAllPoints(this.guids[destName][spellName].parent)
-		-------------------------------
-		this.guids[destName][spellName]:SetParent(this.guids[destName][spellName].parent)
-		CooldownFrame_SetTimer(this.guids[destName][spellName], GetTime(), this.abilities[spellName], 1)
-		this.guids[destName][spellName].onFrame = "none"
-		this.guids[destName][spellName]:Show()
-		
-		if UnitName("target") == destName then
-			this:PLAYER_TARGET_CHANGED()
+	if this.guids then
+		if type(this.guids[destName]) ~= "table" then
+			this.guids[destName] = { }
+		end
+		-- don't create any more frames than necessary to avoid memory overload
+		if this.guids[destName] and this.guids[destName][spellName] then
+			this:UpdateFrames(destName, spellName)
+		elseif this.abilities[spellName] then
+			this.guids[destName][spellName] = CreateFrame("Model", spellName .. "_" .. destName.."Cooldown", nil, "CooldownFrameTemplate")
+			-- to make this work with OmniCC || OmniCC requires parent and Icon
+			this.guids[destName][spellName].parent = CreateFrame("Frame", spellName .. "_" .. destName)
+			this.guids[destName][spellName].parent:Hide()
+			this.guids[destName][spellName].parent.icon = CreateFrame("Frame", spellName .. "_" .. destName.."EBF")
+			this.guids[destName][spellName].parent.icon:SetAllPoints(this.guids[destName][spellName].parent)
+			this.guids[destName][spellName]:SetAllPoints(this.guids[destName][spellName].parent)
+			-------------------------------
+			this.guids[destName][spellName]:SetParent(this.guids[destName][spellName].parent)
+			CooldownFrame_SetTimer(this.guids[destName][spellName], GetTime(), this.abilities[spellName], 1)
+			this.guids[destName][spellName].onFrame = "none"
+			this.guids[destName][spellName]:Show()
+			
+			if UnitName("target") == destName then
+				this:PLAYER_TARGET_CHANGED()
+			end
 		end
 	end
-
 end
 
 function EnemyBuffTimers:UpdateFrames(destName, spellName)
