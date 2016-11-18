@@ -1710,7 +1710,11 @@ function EnemyBuffTimers:UpdateFrames(destName, spellName)
 			this.guids[destName][spellName]:SetHeight(36)
 			this.guids[destName][spellName]:SetWidth(36)
 			local scale = TargetFrameDebuff1:GetHeight()/36
-			if LunaLUFUnittargetDebuffFrame1 then scale = LunaLUFUnittargetDebuffFrame1:GetHeight()/36 end
+			if LunaLUFUnittargetDebuffFrame1 then scale = LunaLUFUnittargetDebuffFrame1:GetHeight()/36 -- luna 2.x
+			elseif XPerl_Target_BuffFrame_DeBuff1 then scale = XPerl_Target_BuffFrame_DeBuff1:GetHeight()/36 -- xperl
+			elseif DUF_TargetFrame_Debuffs_1 then scale = DUF_TargetFrame_Debuffs_1:GetHeight()/36 -- DUF
+			elseif pfUITargetDebuff1 then scale = pfUITargetDebuff1:GetHeight()/36 -- pfUI
+			end
 			this.guids[destName][spellName]:SetScale(scale)
 			this.guids[destName][spellName].parent:SetAllPoints(region)
 			this.guids[destName][spellName].parent:Show()
@@ -2198,13 +2202,22 @@ function EnemyBuffTimers:UNIT_AURA(unitID)
 				local name = EnemyToolTipTextLeft1:GetText()
 				if this.guids[destName][name] then
 					local region = getglobal(firstToUpper(unitID).."FrameBuff"..i)
-					if getglobal("LunaLUFUnittargetBuffFrame"..i) then region = getglobal("LunaLUFUnittargetBuffFrame"..i) end
+					if getglobal("LunaLUFUnittargetBuffFrame"..i) then region = getglobal("LunaLUFUnittargetBuffFrame"..i) -- luna 2.x
+					elseif getglobal("XPerl_Target_BuffFrame_Buff"..i) then region = getglobal("XPerl_Target_BuffFrame_Buff"..i) -- xperl
+					elseif getglobal("DUF_TargetFrame_Buffs_"..i) then region = getglobal("DUF_TargetFrame_Buffs_"..i) -- DUF
+					elseif getglobal("pfUITargetBuff"..i) then region = getglobal("pfUITargetBuff"..i) -- pfUI
+					end
 					if region then
 						this.guids[destName][name]:SetHeight(36)
 						this.guids[destName][name]:SetWidth(36)
 						local scale = TargetFrameBuff1:GetHeight()/36
-						if LunaLUFUnittargetBuffFrame1 then scale = LunaLUFUnittargetBuffFrame1:GetHeight()/36 end
+						if LunaLUFUnittargetBuffFrame1 then scale = LunaLUFUnittargetBuffFrame1:GetHeight()/36 -- luna 2.x
+						elseif XPerl_Target_BuffFrame_Buff1 then scale = XPerl_Target_BuffFrame_Buff1:GetHeight()/36 -- xperl
+						elseif DUF_TargetFrame_Buffs_1 then scale = DUF_TargetFrame_Buffs_1:GetHeight()/36 -- DUF
+						elseif pfUITargetBuff1 then scale = pfUITargetBuff1:GetHeight()/36 -- pfUI
+						end
 						this.guids[destName][name]:SetScale(scale)
+						if pfUI then this.guids[destName][name]:SetFrameStrata("HIGH") end -- pfUI frame level fix
 						this.guids[destName][name].parent:SetAllPoints(region)
 						this.guids[destName][name].parent:Show()
 						this.guids[destName][name].onFrame = unitID
@@ -2222,13 +2235,22 @@ function EnemyBuffTimers:UNIT_AURA(unitID)
 				local name = EnemyToolTipTextLeft1:GetText()
 				if this.guids[destName][name] then
 					local region = getglobal(firstToUpper(unitID).."FrameDebuff"..i)
-					if getglobal("LunaLUFUnittargetDebuffFrame"..i) then region = getglobal("LunaLUFUnittargetDebuffFrame"..i) end
+					if getglobal("LunaLUFUnittargetDebuffFrame"..i) then region = getglobal("LunaLUFUnittargetDebuffFrame"..i) -- luna x2.x
+					elseif getglobal("XPerl_Target_BuffFrame_DeBuff"..i) then region = getglobal("XPerl_Target_BuffFrame_DeBuff"..i) -- xperl
+					elseif getglobal("DUF_TargetFrame_Debuffs_"..i) then region = getglobal("DUF_TargetFrame_Debuffs_"..i) -- DUF
+					elseif getglobal("pfUITargetDebuff"..i) then region = getglobal("pfUITargetDebuff"..i) -- pfUI
+					end
 					if region then
 						this.guids[destName][name]:SetHeight(36)
 						this.guids[destName][name]:SetWidth(36)
 						local scale = TargetFrameDebuff1:GetHeight()/36
-						if LunaLUFUnittargetDebuffFrame1 then scale = LunaLUFUnittargetDebuffFrame1:GetHeight()/36 end
-						this.guids[destName][name]:SetScale(scale)
+						if LunaLUFUnittargetDebuffFrame1 then scale = LunaLUFUnittargetDebuffFrame1:GetHeight()/36 -- luna 2.x
+						elseif XPerl_Target_BuffFrame_DeBuff1 then scale = XPerl_Target_BuffFrame_DeBuff1:GetHeight()/36 -- xperl
+						elseif DUF_TargetFrame_Debuffs_1 then scale = DUF_TargetFrame_Debuffs_1:GetHeight()/36 -- DUF
+						elseif pfUITargetDebuff1 then scale = pfUITargetDebuff1:GetHeight()/36 -- pfUI
+						end
+						this.guids[destName][name]:SetScale(scale*2)
+						if pfUI then this.guids[destName][name]:SetFrameStrata("HIGH") end -- pfUI frame level fix
 						this.guids[destName][name].parent:SetAllPoints(region)
 						this.guids[destName][name].parent:Show()
 						this.guids[destName][name].onFrame = unitID
