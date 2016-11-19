@@ -2217,7 +2217,7 @@ function EnemyBuffTimers:UNIT_AURA(unitID)
 						elseif pfUITargetBuff1 then scale = pfUITargetBuff1:GetHeight()/36 -- pfUI
 						end
 						this.guids[destName][name]:SetScale(scale)
-						if pfUI then this.guids[destName][name]:SetFrameStrata("HIGH") end -- pfUI frame level fix
+						if pfUITargetBuff1 then this.guids[destName][name]:SetFrameStrata("DIALOG") end -- pfUI frame level fix
 						this.guids[destName][name].parent:SetAllPoints(region)
 						this.guids[destName][name].parent:Show()
 						this.guids[destName][name].onFrame = unitID
@@ -2249,8 +2249,8 @@ function EnemyBuffTimers:UNIT_AURA(unitID)
 						elseif DUF_TargetFrame_Debuffs_1 then scale = DUF_TargetFrame_Debuffs_1:GetHeight()/36 -- DUF
 						elseif pfUITargetDebuff1 then scale = pfUITargetDebuff1:GetHeight()/36 -- pfUI
 						end
-						this.guids[destName][name]:SetScale(scale*2)
-						if pfUI then this.guids[destName][name]:SetFrameStrata("HIGH") end -- pfUI frame level fix
+						this.guids[destName][name]:SetScale(scale)
+						if pfUITargetDebuff1 then this.guids[destName][name]:SetFrameStrata("DIALOG") end -- pfUI frame level fix
 						this.guids[destName][name].parent:SetAllPoints(region)
 						this.guids[destName][name].parent:Show()
 						this.guids[destName][name].onFrame = unitID
